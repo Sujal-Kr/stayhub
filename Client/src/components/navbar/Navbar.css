@@ -1,0 +1,44 @@
+.nav-cont{
+    position: fixed;
+    top:0;
+    right:0;
+    left:0;
+    
+}
+.nav-icon{
+    text-transform:uppercase; 
+}
+.nav-list{
+    display: flex;
+    gap:4rem;
+}
+
+.active{
+    transform: translate(0) !important;
+}
+@media screen and (max-width: 768px) {
+    .nav-list{
+        position: absolute ;
+        top:0;
+        left:0;
+        height: 100vh;
+        width: 100%;
+        transform: translate(100%);
+        flex-direction: column;
+        padding:4rem  3rem;
+        background-color: white ;
+        font-size: 1.4rem;
+
+        
+    }
+    .nav-list a{
+        border-bottom: 2px solid rgb(233, 231, 231) ;
+    }
+    .icon-cont{
+        position: absolute;
+        top:2rem;
+        right: 2rem;
+        font-size: 3rem;
+    }
+    
+}
