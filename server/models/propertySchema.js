@@ -40,7 +40,7 @@ const propertySchema = new mongoose.Schema({
   },
   propertyImage:{
     type: String,
-    required: true,
+    required: false,
   }
 });
 
