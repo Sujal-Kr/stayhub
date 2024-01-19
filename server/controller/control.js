@@ -1,4 +1,4 @@
-
+const PropertyModel=require('..models/propertySchema');
 const getProperty=(req,res)=>{
     res.json({
         message:"success",
@@ -8,4 +8,4 @@ const getProperty=(req,res)=>{
         }
     })
 }
-module.exports = getProperty
+module.exports = {getProperty}

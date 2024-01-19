@@ -22,6 +22,7 @@ function Navbar() {
         <Link onClick={()=>setMode(!mode)}className='active:text-red-300'to='/property'>Property</Link>
         <Link onClick={()=>setMode(!mode)}className='active:text-red-300'to='/mess'>Mess</Link>
         <Link onClick={()=>setMode(!mode)}className='active:text-red-300'to='/vehicle'>Vehicles</Link>
+        <Link onClick={()=>setMode(!mode)}className='active:text-red-300'to='/proplisting'>Listing</Link>
 
       </div>
       <div className="search-cont relative hidden md:block">
