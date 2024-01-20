@@ -12,7 +12,7 @@ function Card({item,imageUrl}) {
     dispatch(setCurrentItem(index-1))
   }
   return (
-    <div key={item.propertyId} className=' prop-card grid grid-cols-1 lg:grid-cols-2 my-8 '>
+    <div key={item._id} className=' prop-card grid grid-cols-1 lg:grid-cols-2 my-8 '>
                   <div className="iamge-cont ">
                     <img src={imageUrl} alt="demo-image" className='h-full'/>
                   </div>
@@ -34,7 +34,7 @@ function Card({item,imageUrl}) {
                     <div className="bottom-cont py-3">
                       <div className="action-btn flex justify-between items-center">
                         <div className="btn-cont">
-                          <button className='bg-[#3f37c9] rounded px-12 py-2 text-white'><Link to={`/property/${item.propertyId}` }onClick={()=>handleSingleProperty(item.propertyId)}>Get Details</Link></button>
+                          <button className='bg-[#3f37c9] rounded px-12 py-2 text-white'><Link to={`/property/${item._id}` }onClick={()=>handleSingleProperty(item.propertyId)}>Get Details</Link></button>
                         </div>
                         <div className="btn-cont">
                           <GoHeartFill className='text-3xl text-[#d00000]'/>
@@ -65,7 +65,7 @@ function Card({item,imageUrl}) {
                           {
                             item.placesNearby.map((place)=>(
                               <div className='  bg-slate-200 p-[0.2rem] rounded '>
-                                {place}
+                                {place.data}
                               </div>
                             ))
                           }

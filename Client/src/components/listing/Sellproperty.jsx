@@ -1,9 +1,11 @@
 import React ,{useState} from 'react'
 import { IoMdClose } from "react-icons/io";
 import { FiUpload } from "react-icons/fi";
+import {CiUser} from "react-icons/ci";
 import axios from 'axios'
 
 function Sellproperty() {
+    
     const [services,setServices]=useState([])
     const [sev,setSevdata]=useState()
     const [rooms,setRooms]=useState()
@@ -14,6 +16,7 @@ function Sellproperty() {
     const [furnished,setFurnished]=useState('none')
     const [places,setPlaces]=useState([])
     const [pal,setPal]=useState()
+    const [image,setImage]=useState()
     const [available,setAvailable]=useState(false)
     const sendData=async()=>{
         const obj={
@@ -27,11 +30,11 @@ function Sellproperty() {
             available: available,
             placesNearby: places
         }
-        // console.log(obj);
+
         const res=await axios.post('http://localhost:5000/property',obj)
         console.log(res);
     }
-    const handleFormSubmit=(e)=>{
+    const handleFormButton=(e)=>{
         e.preventDefault()
         sendData()
 
@@ -58,10 +61,23 @@ function Sellproperty() {
         const temp=places.filter(item=>item.id!=id)
         setPlaces(temp)
     }
+    const handleFormSubmit=(e)=>{
+        e.preventDefault(); 
+    }
+    
   return (
     <div className='min-h-screen my-40 flex   justify-center items-center'>
+
       <div className='bg-white shadow-md rounded px-8 pt-6 pb-8'>
-        <form action="">
+        <div className="content-head my-4">
+
+            <div className="text-3xl ">StayHub</div>
+            <div className='flex items-center'>
+                <div className="text-blue-400">Welcome Seller</div>
+            </div>
+            <div>Provide your details list your property</div>
+        </div>
+        <div >
             <div className='sm:w-[38rem] flex flex-col gap-4'>
                 <div className="first grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="name-cont flex flex-col">
@@ -71,9 +87,9 @@ function Sellproperty() {
                     <div className='type-cont flex flex-col'>
                         <label htmlFor="">Property Type</label>
                         <select name="" id="" className='px-4 py-2 outline-blue-800 bg-slate-100 rounded' value={type} onChange={(e)=>setType(e.target.value)}>
-                            <option>Flat</option>
-                            <option value="">Apartment</option>
-                            <option value="">House</option>
+                            <option value="flat">Flat</option>
+                            <option value="apartement">Apartment</option>
+                            <option value="house">House</option>
                         </select>
                     </div>
                 </div>
@@ -85,9 +101,9 @@ function Sellproperty() {
                     <div className='furn-cont flex flex-col '>
                         <label htmlFor="furn">Furnished</label>
                         <select name="" id=""  value={furnished} onChange={(e)=>setFurnished(e.target.value)} className=' px-4 py-2 outline-blue-800 bg-slate-100 rounded uppercase'>
-                            <option>Fully</option>
-                            <option value="">Semi</option>
-                            <option value="">None</option>
+                            <option value="fully">Fully</option>
+                            <option value="semi">Semi</option>
+                            <option value="none">None</option>
                         </select>
                     </div>
                 </div>
@@ -135,29 +151,18 @@ function Sellproperty() {
                 <div className="seventh">
                     <div className="avail-cont flex gap-2">
                         <label htmlFor="avail">Available</label>
-                        <input type="checkbox" checked={available} onChange={(e)=>setAvailable(e.target.checked)}/>{
-                            console.log(available)
-                        }
+                        <input type="checkbox" checked={available} onChange={(e)=>setAvailable(e.target.checked)}/>
                     </div>
                 </div>
                 <div className="eight ">
                     <label htmlFor="fileinput">Property Images</label>
-                    <label htmlFor='fileinput' className='border-2 border-dashed h-40 flex flex-col items-center justify-center'>
-                        <input
-                        accept='image/*'
-                        type='file'
-                        id="fileinput"
-                        style={{ visibility: 'hidden', width: '0', height: '0' }}
-                        />
-                        <FiUpload className='text-5xl'/>
-                        <div>Drag files here or click to Upload the iamge</div>
-                    </label>
+                    <input type="file" accept='image/*' value={image} onChange={(e)=>setImage[e.target.files[0]]} />
                 </div>
                 <div className="post-btn">
-                    <button  onClick={(e)=>handleFormSubmit(e)}className='px-4 py-3 bg-blue-800 text-white uppercase w-full'>List Yout Property</button>
+                    <button  onClick={(e)=>handleFormButton(e)}className='px-4 py-3 bg-blue-800 text-white uppercase w-full'>List Yout Property</button>
                 </div>
             </div>
-        </form>
+        </div>
       </div>
     </div>
   )

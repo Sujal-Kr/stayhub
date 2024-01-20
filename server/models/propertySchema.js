@@ -27,7 +27,7 @@ const propertySchema = new mongoose.Schema({
     required: true,
   },
   amenities: {
-    type: [String],
+    type: [{}],
     required: true,
   },
   available: {
@@ -35,7 +35,7 @@ const propertySchema = new mongoose.Schema({
     required: true,
   },
   placesNearby: {
-    type: [String],
+    type: [{}],
     required: true,
   },
   propertyImage:{

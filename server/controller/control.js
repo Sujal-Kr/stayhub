@@ -1,11 +1,14 @@
 const PropertyModel=require('../models/propertySchema');
 
-const getProperty=(req,res)=>{
+const getProperty=async(req,res)=>{
+    const property=await PropertyModel.find()
+
     res.json({
         message:"Recived property details",
-        data:PropertyModel.find()
+        property
     })
 }
+
 const postProperty=async(req,res)=>{
     const data=req.body
     console.log(data);
