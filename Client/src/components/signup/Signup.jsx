@@ -2,7 +2,7 @@ import React ,{useState}from 'react'
 import { BiJoystick } from "react-icons/bi";
 import { Link } from 'react-router-dom';
 import { CiUser,CiMail } from "react-icons/ci"
-import {MdOutlinePassword} from 'react-icons/md'
+import {MdOutlinePassword,MdOutlineRealEstateAgent} from 'react-icons/md'
 import bgcover from '../../assets/hill.jpg'
 function Signup() {
     const [user,setUser]=useState()
@@ -26,7 +26,7 @@ function Signup() {
     <div  className={`h-screen flex justify-center items-center  `}style={backgroundStyle}>
       <div className="login-cont w-[30rem] px-10 mx-2     rounded" style={morphism}>
         <div className="form-icon-cont text-3xl flex items-center gap-2 justify-center my-12">
-            <BiJoystick/>
+            <MdOutlineRealEstateAgent/>
             <h2>StayHub</h2>
         </div>
         <div className="mode-cont flex gap-4 uppercase justify-center my-5">
