@@ -3,6 +3,7 @@ import { IoMdClose } from "react-icons/io";
 import { FiUpload } from "react-icons/fi";
 import {CiUser} from "react-icons/ci";
 import axios from 'axios'
+import bgcover from '../../assets/sale.svg'
 
 function Sellproperty() {
     
@@ -39,6 +40,18 @@ function Sellproperty() {
         sendData()
 
     }
+    const backgroundStyle={
+        backgroundImage:`url(${bgcover})`,
+        backgroundRepeat:'no-repeat',
+        backgroundPosition:" center",
+    }
+    const morphismStyle={
+        background: "rgba( 255, 255, 255, 0.25 )",
+        boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
+        backdropFilter: "blur( 4px )",
+        borderRadius: "10px",
+        border: "1px solid rgba( 255, 255, 255, 0.18 )"
+    }
     const handleService=(e)=>{
         if(e.key==='Enter'&&services.length<=3&&sev!=='') {
             e.preventDefault(); 
@@ -66,9 +79,9 @@ function Sellproperty() {
     }
     
   return (
-    <div className='min-h-screen my-40 flex   justify-center items-center'>
+    <div className='min-h-screen my-40 flex   justify-center items-center'  >
 
-      <div className='bg-white shadow-md rounded px-8 pt-6 pb-8'>
+      <div className='bg-white shadow-md rounded px-8 pt-6 pb-8' >
         <div className="content-head my-4">
 
             <div className="text-3xl ">StayHub</div>

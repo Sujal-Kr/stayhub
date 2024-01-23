@@ -1,7 +1,6 @@
 import React,{useState} from 'react'
-import { AiFillDribbbleSquare } from "react-icons/ai";
 import { CiMenuFries,CiSearch } from "react-icons/ci";
-import { MdClose } from "react-icons/md";
+import { MdClose,MdOutlineRealEstateAgent } from "react-icons/md";
 import { IoIosBookmark } from "react-icons/io";
 // import Avatar from '@mui/material/Avatar';
 import { Link } from 'react-router-dom';
@@ -12,8 +11,8 @@ function Navbar() {
   return (
     <div className='nav-cont  py-3 flex items-center justify-between px-6 '>
       <div className="nav-icon flex items-center text-2xl">
-        <AiFillDribbbleSquare className='text-5xl ' />
-        <Link to='/' className='text-[#2c6e49] font-bold'>StayHub</Link>
+        <MdOutlineRealEstateAgent className='text-5xl ' />
+        <Link to='/' className='text-[#3f37c9] lowercase   font-bold'>StayHub</Link>
       </div>
       <div className={mode?"nav-list active text-md   text-gray-400":"nav-list text-md   text-gray-400"}>
         <div className="icon-cont">

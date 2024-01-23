@@ -23,6 +23,7 @@ function App() {
           <Route path='/'element={<>
             <Hero/>
             <Feature/>
+            <Footer/>
           </>}></Route>
           <Route path='/property' element={<Property/>}></Route>
           <Route path='/login'element={<Login/>}></Route>
@@ -30,7 +31,6 @@ function App() {
           <Route path='/property/:id'element={<SingleProperty/>}></Route>
           <Route path='/proplisting' element={<Sellproperty/>}></Route>
         </Routes>
-        <Footer/>
       </Router>
     </Provider>
   )

@@ -15,7 +15,7 @@ function FilterCard() {
         dispatch(applyFilters(range))
     }
   return (
-    <div className='shadow-xl p-3'>
+    <div className=' md:sticky top-40 shadow-xl p-3'>
       <div className="content-head flex text-sm font-bold justify-between">
         <h5 className=''>Filter</h5>
         <button className='text-[#3f37c9]'>Reset</button>
