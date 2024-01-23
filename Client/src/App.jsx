@@ -12,6 +12,7 @@ import Hero from './components/hero/Hero'
 import Footer from './components/footer/Footer'
 import {Feature}  from './components/feature/Feature'
 import Sellproperty from './components/listing/Sellproperty'
+import ProtectedRoute from './components/ProtectedRoute'
 function App() {
   
 
@@ -24,12 +25,15 @@ function App() {
             <Hero/>
             <Feature/>
             <Footer/>
-          </>}></Route>
+            </>}>
+          </Route>
           <Route path='/property' element={<Property/>}></Route>
           <Route path='/login'element={<Login/>}></Route>
           <Route path='/signup' element={<Signup/>}></Route>
           <Route path='/property/:id'element={<SingleProperty/>}></Route>
-          <Route path='/proplisting' element={<Sellproperty/>}></Route>
+          <Route element={<ProtectedRoute/>} >
+            <Route path='/proplisting' element={<Sellproperty/>}></Route>
+          </Route>
         </Routes>
       </Router>
     </Provider>
