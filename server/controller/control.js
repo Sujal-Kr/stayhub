@@ -24,8 +24,8 @@ const postProperty=async(req,res)=>{
 const createUser =async (req,res)=>{
     try{
         const data = req.body;
-
-        const user = await userModel.create(data);
+        console.log(data);
+        const user = await userModel.create(...data);
         console.log(user);
         res.status(200).json({
             message:"user creaeted",
