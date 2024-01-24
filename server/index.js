@@ -2,7 +2,7 @@ const express = require('express');
 const cors=require('cors');
 require('./db/connection.js')
 
-const propertyRouter=require('./routes/route.js')
+const propertyRouter,userRouter=require('./routes/route.js')
 const app = express();
 
 app.use(express.json());
