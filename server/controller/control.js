@@ -27,6 +27,10 @@ const createUser =async (req,res)=>{
 
         const user = await userModel.create({...data});
         console.log(user);
+        res.status(200).json({
+            message:"user creaeted",
+            user
+        })
     }
     catch(err){
         console.log("Error while creating user");
