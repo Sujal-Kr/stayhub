@@ -1,4 +1,5 @@
-const {PropertyModel,userModel}=require('../models/propertySchema');
+const {PropertyModel}=require('../models/propertySchema');
+const {UserModel} = require("../models/userSchema");
 
 const getProperty=async(req,res)=>{
     const property=await PropertyModel.find()
@@ -24,8 +25,13 @@ const postProperty=async(req,res)=>{
 const createUser =async (req,res)=>{
     try{
         const data = req.body;
+<<<<<<< HEAD
         console.log(data);
         const user = await userModel.create(...data);
+=======
+
+        const user = await UserModel.create({...data});
+>>>>>>> e1f71f499d3e607d1d61d968d88858689c635761
         console.log(user);
         res.status(200).json({
             message:"user creaeted",
