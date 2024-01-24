@@ -1,4 +1,4 @@
-const PropertyModel=require('../models/propertySchema');
+const {PropertyModel,userModel}=require('../models/propertySchema');
 
 const getProperty=async(req,res)=>{
     const property=await PropertyModel.find()
@@ -35,7 +35,7 @@ const createUser =async (req,res)=>{
     catch(err){
         console.log("Error while creating user");
         return res.status(500).json({
-            message:"Error while creating user"
+            message:err.message
         })
     }
 
