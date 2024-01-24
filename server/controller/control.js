@@ -1,4 +1,4 @@
-const PropertyModel=require('../models/propertySchema');
+const {PropertyModel,userModel}=require('../models/propertySchema');
 
 const getProperty=async(req,res)=>{
     const property=await PropertyModel.find()
