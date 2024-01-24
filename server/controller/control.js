@@ -25,7 +25,7 @@ const createUser =async (req,res)=>{
     try{
         const data = req.body;
 
-        const user = await userModel.create({...data});
+        const user = await userModel.create(data);
         console.log(user);
         res.status(200).json({
             message:"user creaeted",
@@ -35,7 +35,7 @@ const createUser =async (req,res)=>{
     catch(err){
         console.log("Error while creating user");
         return res.status(500).json({
-            message:"Error while creating user"
+            message:err.message
         })
     }
 
