@@ -20,4 +20,21 @@ const postProperty=async(req,res)=>{
     })
 
 }
+
+const createuser =async (req,res)=>{
+    try{
+        const data = req.body;
+
+        const user = await userModel.create({...data});
+        console.log(user);
+    }
+    catch(err){
+        console.log("Error while creating user");
+        return res.status(500).json({
+            message:"Error while creating user"
+        })
+    }
+
+
+}
 module.exports = {getProperty,postProperty}
