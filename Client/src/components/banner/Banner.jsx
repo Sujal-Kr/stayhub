@@ -10,7 +10,7 @@ function Banner({text,imageUrl}) {
     }
   return (
     <div className='h-[24rem] mt-20 flex justify-center items-center ' style={bgStyle}>
-        <h4 className=' text-red-100 text-center text-5xl'>{text}</h4>
+        <h4 className=' special text-slate-800 drop-shadow-2xl text-center text-3xl md:text-8xl'>{text}</h4>
     </div>
   )
 }

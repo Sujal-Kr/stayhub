@@ -44,7 +44,7 @@ function Card({item,imageUrl}) {
                             <div className='font-bold'>{item.propertyName}</div>
                             <div className="rating-cont flex items-center gap-1">
                                 <MdOutlineStarPurple500 className='text-yellow-400 '/>
-                                {Math.floor(Math.random() * 10)}
+                                {Math.floor(Math.random() * 10)+'/10'}
                             </div>
                         <div className="mid-cont my-2 grid grid-cols-2 text-[0.8rem]">
                             <div className='flex items-center  '>
