@@ -1,8 +1,9 @@
 import react from 'react'
-import { FaSearchLocation } from "react-icons/fa";
+import { FaSearchLocation,FaTree } from "react-icons/fa";
 import {FaTruckFast} from "react-icons/fa6"
 import {IoFastFoodOutline} from 'react-icons/io5'
 export const Feature = () => {
+  
     return (
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
@@ -16,7 +17,7 @@ export const Feature = () => {
               <svg
                 viewBox="0 0 52 24"
                 fill="currentColor"
-                className="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
+                className="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
               >
                 <defs>
                   <pattern
@@ -35,9 +36,9 @@ export const Feature = () => {
                   height="24"
                 />
               </svg>
-              <span className="relative">The</span>
+              <span className="relative">Where</span>
             </span>{' '}
-            quick, brown fox jumps over a lazy dog
+            convience meets comfort
           </h2>
           <p className="text-base text-gray-700 md:text-lg">
             Sed ut perspiciatis unde omnis iste natus error sit voluptatem
@@ -56,7 +57,7 @@ export const Feature = () => {
             <a
               href="/"
               aria-label=""
-              className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
+              className=" text-[#3f37c9]  transition-all   inline-flex items-center font-semibold  duration-200 "
             >
               Learn more
             </a>
@@ -72,7 +73,7 @@ export const Feature = () => {
             <a
               href="/"
               aria-label=""
-              className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
+              className=" text-[#3f37c9]   inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
             >
               Learn more
             </a>
@@ -88,26 +89,14 @@ export const Feature = () => {
             <a
               href="/"
               aria-label=""
-              className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
+              className=" text-[#3f37c9]   inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
             >
               Learn more
             </a>
           </div>
           <div className="max-w-md sm:mx-auto sm:text-center">
             <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50 sm:mx-auto sm:w-24 sm:h-24">
-              <svg
-                className="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16"
-                stroke="currentColor"
-                viewBox="0 0 52 52"
-              >
-                <polygon
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  fill="none"
-                  points="29 13 14 29 25 29 23 39 38 23 27 23"
-                />
-              </svg>
+              <FaTree className='text-4xl'/>
             </div>
             <h6 className="mb-3 text-xl font-bold leading-5">
               A slice of heaven
@@ -118,7 +107,7 @@ export const Feature = () => {
             <a
               href="/"
               aria-label=""
-              className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
+              className=" text-[#3f37c9]   inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
             >
               Learn more
             </a>

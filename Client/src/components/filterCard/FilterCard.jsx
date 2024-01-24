@@ -4,19 +4,23 @@ import propertySlice, { applyFilters } from '../../redux/slice/propertySlice';
 import { useDispatch } from 'react-redux';
 
 
-function FilterCard({setProperty,property}) {
+function FilterCard({setProperty}) {
     const [range,setRange]=useState(4000)
     const [val,setVal]=useState([])
     const dispatch = useDispatch()
     const handleAppartmentType=(index)=>{
         setVal(val[index]=true)
     }
-    const handleFilter=()=>{
-      console.log(range);
-      console.log(property);
-      const data=property.filter(item=>item.price<=range)
-      setProperty(data)
+    
+    const handleFilter=async()=>{
+      // const data=await getData()
+      // const temp=property.filter(item=>item.price<=range)
+      // setProperty(temp)
     }
+    
+
+
+
   return (
     <div className=' md:sticky top-40 shadow-xl p-3'>
       <div className="content-head flex text-sm font-bold justify-between">

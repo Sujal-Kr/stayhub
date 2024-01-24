@@ -53,7 +53,7 @@ const Property = () => {
 				<Banner text={"Reimagine your Home"}  imageUrl={bgCover}/>
 				<div className="prop-cont my-20 px-2 md:px-24">
 					<div className="left-cont   top-0">
-						<FilterCard className='sticky top-0' property={property} setProperty={setProperty}  />
+						<FilterCard className='sticky top-0'  setProperty={setProperty}  />
 					</div>
 					<div className="">
 						<div className="content-head flex justify-between">

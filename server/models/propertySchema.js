@@ -46,4 +46,4 @@ const propertySchema = new mongoose.Schema({
 
 const PropertyModel = mongoose.model('PropertyModel', propertySchema);
 
-module.exports = PropertyModel;
+module.exports = {PropertyModel};

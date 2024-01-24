@@ -8,8 +8,8 @@ propertyRouter
 .get(getProperty)
 .post(postProperty);
 
-userRouter
-.route("/")
-.post(createUser);
+// userRouter
+// .route("/")
+// .post(createUser);
 
 module.exports = {propertyRouter, userRouter};
