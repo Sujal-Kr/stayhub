@@ -17,8 +17,8 @@ const Property = () => {
 	let PropData=[]
 	const getData = async () => {
 		try {
-			const res = await axios.get('http://localhost:5000/property');
-			PropData = res.data.property;
+			const res = await axios.get('http://localhost:5000/api/property');
+			PropData = res.data.PropertyData;
 			console.log(PropData);
 			setProperty(PropData);
 			setLoading(false);

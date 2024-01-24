@@ -13,8 +13,8 @@ function FilterCard({setProperty}) {
         setVal(val[index]=true)
     }
     const getData=async()=>{
-      const res= await axios.get('http://localhost:5000/property');
-      return res.data.property
+      const res= await axios.get('http://localhost:5000/api/property');
+      return res.data.PropertyData
     }
     const handleFilter=async()=>{
       const data=await getData()

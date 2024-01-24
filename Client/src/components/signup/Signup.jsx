@@ -1,13 +1,16 @@
 import React ,{useState}from 'react'
 import { BiJoystick } from "react-icons/bi";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CiUser,CiMail } from "react-icons/ci"
 import {MdOutlinePassword,MdOutlineRealEstateAgent} from 'react-icons/md'
 import bgcover from '../../assets/hill.jpg'
+import axios from 'axios'
+
 function Signup() {
     const [user,setUser]=useState()
     const [pass,setPass]=useState()
     const [email,setEmail]=useState()
+
     const backgroundStyle = {
         backgroundImage: `url(${bgcover})`,
         backgroundSize: 'cover',
@@ -20,6 +23,27 @@ function Signup() {
         backdropFilter: "blur( 24px )",
         borderRadius: "10px",
         border: "1px solid rgba( 255, 255, 255, 0.18 )"
+    }
+    const userData={
+        username:user,
+        email,
+        password:pass
+    }
+    const navigate=useNavigate()
+    const signUp=async(e)=>{
+        e.preventDefault()
+        
+        try{
+            const res=await axios.post('http://localhost:5000/auth/user',userData)
+            console.log(res);
+            console.log(res.status)
+            if(res.status === 200){
+                console.log("success");
+                navigate('/')
+            }
+        }catch(err){
+            console.log(err.message)
+        }
     }
     
   return (
@@ -50,7 +74,7 @@ function Signup() {
                 <label htmlFor="stay">Stay Singed In</label>
             </div>
             <div className="btn-cont my-6">
-                <button className='uppercase bg-[#2c6e49] text-white w-full py-3 rounded-full'>Sign Up</button>
+                <button className='uppercase bg-[#2c6e49] text-white w-full py-3 rounded-full' onClick={signUp}>Sign Up</button>
             </div>
             <div className="action-btn my-6">
                 <h5 className='text-center'>Allready a user ? <Link to='/login'>Log In</Link></h5>

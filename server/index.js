@@ -1,16 +1,20 @@
-const express = require('express');
-const cors=require('cors');
-require('./db/connection.js')
+const express = require("express")
+const cors = require("cors")
+const  propertyRouter  = require("./routes/propertyRoute");
+const  userRouter = require("./routes/userRoutes")
 
-const {propertyRouter}=require('./routes/route.js')
 const app = express();
+const PORT = 5000 || process.env.PORT
 
 app.use(express.json());
-app.use(cors())
-app.use('/property',propertyRouter);
-// app.use("/user",userRouter);
+app.use(cors());
 
-app.listen(5000, () => {
-    console.log("Server is running on port 5000...");
-});
+app.use('/api',propertyRouter);
+app.use('/auth',userRouter);
 
+
+
+app.listen(PORT,()=>{
+    require('./database/db');
+    console.log(`listening on ${PORT}`);
+})
