@@ -1,10 +1,10 @@
 import React,{useState} from 'react'
 import { MdCurrencyRupee } from "react-icons/md";
-import { applyFilters } from '../../redux/slice/propertySlice';
+import propertySlice, { applyFilters } from '../../redux/slice/propertySlice';
 import { useDispatch } from 'react-redux';
 
 
-function FilterCard() {
+function FilterCard({setProperty,property}) {
     const [range,setRange]=useState(4000)
     const [val,setVal]=useState([])
     const dispatch = useDispatch()
@@ -12,7 +12,10 @@ function FilterCard() {
         setVal(val[index]=true)
     }
     const handleFilter=()=>{
-        dispatch(applyFilters(range))
+      console.log(range);
+      console.log(property);
+      const data=property.filter(item=>item.price<=range)
+      setProperty(data)
     }
   return (
     <div className=' md:sticky top-40 shadow-xl p-3'>

@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 import './Navbar.css'
 function Navbar() {
     const [mode,setMode]=useState(false)
-
+    
   return (
     <div className='nav-cont  py-3 flex items-center justify-between px-6 '>
       <div className="nav-icon flex items-center text-2xl">
         <MdOutlineRealEstateAgent className='text-5xl ' />
-        <Link to='/' className='text-[#3f37c9] lowercase   font-bold'>StayHub</Link>
+        <Link to='/' className='text-[#3f37c9] normal-case   font-bold'>StayHub</Link>
       </div>
       <div className={mode?"nav-list active text-md   text-gray-400":"nav-list text-md   text-gray-400"}>
         <div className="icon-cont">
@@ -25,8 +25,8 @@ function Navbar() {
 
       </div>
       <div className="search-cont relative hidden md:block">
-        <input type="text" className='border-2 border-gray rounded px-2 py-1 w-64 bg-slate-200 outline-gray'/>
-        <CiSearch className='absolute top-2 left-1 text-orange-600 text-xl '/ >
+        <button className='px-6 py-2 shadow-full rounded  bg-[#3f37c9]  text-white'><Link to='/login'>Login</Link></button>
+        
       </div>
       <div className="action-btn flex items-center gap-4">
         <IoIosBookmark className="text-2xl"/>
