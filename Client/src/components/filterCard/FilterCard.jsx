@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import { MdCurrencyRupee } from "react-icons/md";
 import propertySlice, { applyFilters } from '../../redux/slice/propertySlice';
 import { useDispatch } from 'react-redux';
+import axios from 'axios'
 
 
 function FilterCard({setProperty}) {
@@ -11,11 +12,14 @@ function FilterCard({setProperty}) {
     const handleAppartmentType=(index)=>{
         setVal(val[index]=true)
     }
-    
+    const getData=async()=>{
+      const res= await axios.get('http://localhost:5000/property');
+      return res.data.property
+    }
     const handleFilter=async()=>{
-      // const data=await getData()
-      // const temp=property.filter(item=>item.price<=range)
-      // setProperty(temp)
+      const data=await getData()
+      const temp=data.filter((item)=>item.price<=range)
+      setProperty(temp)
     }
     
 
@@ -43,16 +47,8 @@ function FilterCard({setProperty}) {
                     Immediately
                 </div>
                 <div className='flex gap-2 items-center'>
-                <input type="radio" name="avail" id="" value="within 30 days"/>
-                Within 30 days
-                </div>
-                <div className='flex gap-2 items-center'>
-                <input type="radio" name="avail" id="" value="after 30 days"/>
-                After 30 days
-                </div>
-                <div className='flex gap-2 items-center'>
-                <input type="radio" name="avail" id="" value="within 15 days"/>
-                Within 15 days
+                  <input type="radio" name="avail" id="" value="later"/>
+                  Later
                 </div>
             </div>
         </div>

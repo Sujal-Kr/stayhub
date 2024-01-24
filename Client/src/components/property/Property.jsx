@@ -36,12 +36,12 @@ const Property = () => {
 	}, []);	
 	const dispatch = useDispatch();
 	const sortByPrice = () => {
-		const temp = [...property].toSorted((a, b) => a.price - b.price);
+		const temp = property.toSorted((a, b) => a.price - b.price);
 		setProperty(temp);
 	};
 	
 	const sortByPriceDesc = () => {
-		const temp = [...property].toSorted((a, b) => b.price - a.price);
+		const temp = property.toSorted((a, b) => b.price - a.price);
 		setProperty(temp);
 	};
 
