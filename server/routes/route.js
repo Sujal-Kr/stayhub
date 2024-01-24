@@ -1,5 +1,5 @@
 const express = require("express");
-const {getProperty, postProperty} = require("../controller/control.js");
+const {getProperty, postProperty,createUser} = require("../controller/control.js");
 const propertyRouter = express.Router();
 const userRouter = express.Router();
 

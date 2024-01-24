@@ -21,7 +21,7 @@ const postProperty=async(req,res)=>{
 
 }
 
-const createuser =async (req,res)=>{
+const createUser =async (req,res)=>{
     try{
         const data = req.body;
 
@@ -37,4 +37,4 @@ const createuser =async (req,res)=>{
 
 
 }
-module.exports = {getProperty,postProperty}
+module.exports = {getProperty,postProperty,createUser}
