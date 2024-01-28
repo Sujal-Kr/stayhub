@@ -13,6 +13,8 @@ import Footer from './components/footer/Footer'
 import {Feature}  from './components/feature/Feature'
 import Sellproperty from './components/listing/Sellproperty'
 import ProtectedRoute from './components/ProtectedRoute'
+import Mess from './components/mess/Mess'
+import Vehicle from './components/transport/Vehicle'
 function App() {
   
 
@@ -34,6 +36,8 @@ function App() {
           <Route element={<ProtectedRoute/>} >
             <Route path='/proplisting' element={<Sellproperty/>}></Route>
           </Route>
+          <Route path='/mess' element={<Mess/>}></Route>
+          <Route path='/vehicle' element={<Vehicle/>}></Route>
         </Routes>
       </Router>
     </Provider>

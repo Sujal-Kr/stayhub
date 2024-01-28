@@ -1,23 +1,21 @@
 import React from 'react'
-import sideImage from '../../assets/bgcover.jpg'
+import rent from '../../assets/rent.jpg'
+import  car from '../../assets/car.jpg'
+import food from '../../assets/food.jpg'
 import { Link } from 'react-router-dom'
+import { useTypewriter, Cursor } from 'react-simple-typewriter'
 function Hero() {
+  const [text] = useTypewriter({
+    words: ['Accomodation service', 'Transport service', 'Mess/Tiffin service'],
+    loop: false,
+    // onLoopDone: () => console.log(`loop completed after 3 runs.`)
+  })
   return (
     <div className="relative flex flex-col-reverse py-16 lg:pt-0 lg:flex-col lg:pb-0 my-20">
-      <div className="inset-y-0 top-0 right-0 z-0 w-full max-w-xl px-4 mx-auto md:px-0 lg:pr-0 lg:mb-0 lg:mx-0 lg:w-7/12 lg:max-w-full lg:absolute xl:px-0">
-        <svg
-          className="absolute left-0 hidden h-full text-white transform -translate-x-1/2 lg:block"
-          viewBox="0 0 100 100"
-          fill="currentColor"
-          preserveAspectRatio="none slice"
-        >
-          <path d="M50 0H100L50 100H0L50 0Z" />
-        </svg>
-        <img
-          className="object-cover w-full h-56 rounded shadow-lg lg:rounded-none lg:shadow-none md:h-96 lg:h-full"
-          src={sideImage}
-          alt="random"
-        />
+      <div className="relative inset-y-0 top-0 right-0 z-0 w-full max-w-xl px-4 mx-auto md:px-0 lg:pr-0 lg:mb-0 lg:mx-0 lg:w-7/12 lg:max-w-full lg:absolute xl:px-0">
+        <div className='h-[20rem] w-[20rem] border-2 rounded-full border-[#00b2b2]  overflow-clip absolute top-3 right-3'><img src={rent} alt="" className='h-full w-full object-cover p-1 rounded-full '/></div>
+        <div className='h-[20rem] w-[20rem] border-2 rounded-full border-[#048a81]  overflow-clip absolute bottom-12 right-[20%]'><img src={car} alt="" className='h-full w-full object-cover p-1 rounded-full '/></div>
+        <div className='h-[22rem] w-[22rem] border-2 rounded-full border-[#dbdab9]  overflow-clip absolute top-10 left-16'><img src={food} alt="" className='h-full w-full object-cover p-1 rounded-full '/></div>
       </div>
       <div className="relative flex flex-col items-start w-full max-w-xl px-4 mx-auto md:px-0 lg:px-8 lg:max-w-screen-xl">
         <div className="mb-16 lg:my-40 lg:max-w-lg lg:pr-5">
@@ -42,6 +40,10 @@ function Hero() {
               Explore
             </Link>
             
+          </div>
+          <div className='py-10'>
+            <div className='text-xl'>You can easily avail <span className='text-[#1DE9B6]'>{text}</span></div>
+            {/* <Cursor cursorColor='#3dccc7'/> */}
           </div>
         </div>
       </div>

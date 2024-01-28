@@ -3,19 +3,31 @@ import { useState } from 'react'
 import { BiJoystick } from "react-icons/bi";
 import {MdOutlineRealEstateAgent} from 'react-icons/md'
 import { Link } from 'react-router-dom';
-import bgCover from '../../assets/bg.svg'
+import bgCover from '../../assets/student.jpg'
+
 function Login() {
     
     const [email,setEmail]=useState()
     const [pass,setPass]=useState()
+    const [error,setError]=useState('')
     const backgroundStyle={
         backgroundImage:`url(${bgCover})`,
         backgroundRepeat:'no-repeat',
+        backgroundPosition:'center',
+        backgroundSize:'65%',
     }
+    const morphism = {
+		background: "rgba( 255, 255, 255, 0.25 )",
+		boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
+		backdropFilter: "blur( 24px )",
+		borderRadius: "10px",
+		border: "1px solid rgba( 255, 255, 255, 0.18 )",
+	}
+    
 
   return (
-    <div  className='h-screen flex justify-center items-center' >
-      <div className="login-cont w-[30rem] px-10 mx-2  bg-[#353535]  text-white rounded">
+    <div  className='h-screen flex justify-center items-center ' style={backgroundStyle}>
+      <div className="login-cont w-[30rem] px-10 mx-2  bg-[#353535]  text-white rounded" style={morphism}>
         <div className="form-icon-cont text-3xl flex items-center gap-2 justify-center my-12">
             <MdOutlineRealEstateAgent/>
             <h2>StayHub</h2>

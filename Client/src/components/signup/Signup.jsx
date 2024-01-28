@@ -5,13 +5,13 @@ import {CiUser, CiMail} from "react-icons/ci";
 import {MdOutlinePassword, MdOutlineRealEstateAgent} from "react-icons/md";
 import bgcover from "../../assets/hill.jpg";
 import axios from "axios";
-import Cookies from "universal-cookie";
+// import Cookies from "universal-cookie";
 
 function Signup() {
 	const [user, setUser] = useState();
 	const [pass, setPass] = useState();
 	const [email, setEmail] = useState();
-	const cookies = new Cookies(null, {path: "/"});
+	// const cookies = new Cookies(null, {path: "/"});
 
 	const backgroundStyle = {
 		backgroundImage: `url(${bgcover})`,
@@ -40,13 +40,13 @@ function Signup() {
 				"http://localhost:5000/auth/user",
 				userData
 			);
-			console.log(res.cookies);
+			// console.log(res.cookies);
 
-			if (res.status === 200) {
-				cookies.set("loggedIn", true);
-				console.log("success");
-				navigate("/");
-			}
+			// if (res.status === 200) {
+			// 	cookies.set("loggedIn", true);
+			// 	console.log("success");
+			// 	navigate("/");
+			// }
 		} catch (err) {
 			console.log(err.message);
 		}

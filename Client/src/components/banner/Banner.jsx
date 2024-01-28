@@ -15,7 +15,7 @@ function Banner({text,imageUrl}) {
   )
 }
 
-// Banner.defaultProps = {
-//   imageUrl: buildings
-// }
+Banner.defaultProps = {
+  imageUrl: buildings
+}
 export default Banner
