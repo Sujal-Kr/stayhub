@@ -2,11 +2,12 @@ import React from 'react'
 import { useState } from 'react'
 import { BiJoystick } from "react-icons/bi";
 import {MdOutlineRealEstateAgent} from 'react-icons/md'
-import { Link } from 'react-router-dom';
-import bgCover from '../../assets/student.jpg'
+import { Link , useNavigate } from 'react-router-dom';
+import bgCover from '../../assets/bg.svg'
+import axios from 'axios'
 
 function Login() {
-    
+    const navigate = useNavigate();
     const [email,setEmail]=useState()
     const [pass,setPass]=useState()
     const [error,setError]=useState('')
@@ -25,6 +26,19 @@ function Login() {
 	}
     
 
+    const userData ={
+        email,
+        password:pass
+    }
+
+    const loginFunction = async(e) =>{
+        e.preventDefault();
+        // yaha p userId v milega tumko ab usko store kro kahe p aur usse property listing m link krnge
+        // after loggin user info ko display kro dashboard ya "/"" m
+        const res =  await axios.post('http://localhost:5000/auth',userData);
+        if( res.status === 201)navigate("/");
+    }
+
   return (
     <div  className='h-screen flex justify-center items-center ' style={backgroundStyle}>
       <div className="login-cont w-[30rem] px-10 mx-2  bg-[#353535]  text-white rounded" style={morphism}>
@@ -38,12 +52,14 @@ function Login() {
         </div>
         <form action="">
             <div>
-                <input value={email} onChange={(e)=>setEmail(e.target.value)} className='w-full text-slate-900 font-semibold outline-none rounded-full py-3 px-3 my-3'placeholder='Username' type="text" name="" id="" />
+            <input value={email} onChange={(e)=>setEmail(e.target.value)} className='w-full text-slate-900 font-semibold outline-none rounded-full py-3 px-3 my-3'placeholder='email' type="email" name="" id="" />
+
             </div>
             
             
             <div>
-                <input value={pass} onChange={(e)=>setPass(e.target.value)} className='w-full text-slate-900 font-semibold outline-none rounded-full py-3 px-3 my-3'placeholder='Password' type="text" name="" id="" />
+            <input value={pass} onChange={(e)=>setPass(e.target.value)} className='w-full text-slate-900 font-semibold outline-none rounded-full py-3 px-3 my-3'placeholder='Password' type="password" name="" id="" />
+
             </div>
             <div className="check-cont flex gap-2">
                 <input type="checkbox" name="stay" id="" />
