@@ -3,6 +3,7 @@ import { FaSearchLocation,FaTree } from "react-icons/fa";
 import {FaTruckFast} from "react-icons/fa6"
 import {IoFastFoodOutline} from 'react-icons/io5'
 import { BsBuildings } from "react-icons/bs";
+import { Link } from 'react-router-dom';
 export const Feature = () => {
   
     return (
@@ -55,13 +56,13 @@ export const Feature = () => {
             <p className="mb-3 text-sm text-gray-900">
             Browse through a diverse range of PG accommodations, each with detailed information on amenities, pricing, and location. Find the perfect home away from home with ease.
             </p>
-            <a
+            <Link
               href="/"
               aria-label=""
               className=" main-head transition-all   inline-flex items-center font-semibold  duration-200 "
             >
               Know more
-            </a>
+            </Link>
           </div>
           <div className="max-w-md sm:mx-auto sm:text-center">
             <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50 sm:mx-auto sm:w-24 sm:h-24">

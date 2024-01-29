@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200&family=PT+Sans&family=Poppins:wght@100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,6 +9,9 @@
     font-family: 'PT sans', sans-serif;
     user-select: none;
 
+}
+.cursive{
+    font-family: 'Great Vibes', cursive;
 }
 .slider{
     -webkit-appearance: none;

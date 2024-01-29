@@ -3,7 +3,7 @@ import {BiJoystick} from "react-icons/bi";
 import {Link, useNavigate} from "react-router-dom";
 import {CiUser, CiMail} from "react-icons/ci";
 import {MdOutlinePassword, MdOutlineRealEstateAgent} from "react-icons/md";
-import bgcover from "../../assets/hill.jpg";
+import bgcover from "../../assets/ultra.svg";
 import axios from "axios";
 // import Cookies from "universal-cookie";
 
@@ -69,7 +69,7 @@ function Signup() {
 					<div className="login ">
 						<Link to="/login">Log In</Link>
 					</div>
-					<div className="signup  border-b-2 border-green-300">
+					<div className="signup  border-b-2 border-[#3f37c9]">
 						Sign Up
 					</div>
 				</div>
@@ -114,7 +114,7 @@ function Signup() {
 					</div>
 					<div className="btn-cont my-6">
 						<button
-							className="uppercase bg-[#2c6e49] text-white w-full py-3 rounded-full"
+							className="uppercase bg-[#3f37c9] text-white w-full py-3 rounded-full"
 							onClick={signUp}
 						>
 							Sign Up

@@ -1,5 +1,6 @@
 import React from 'react'
 import buildings from '../../assets/build.jpg'
+import dots from '../../assets/dots.svg'
 function Banner({text,imageUrl}) {
     const bgStyle={
         backgroundImage:`url(${imageUrl})`,
@@ -16,6 +17,6 @@ function Banner({text,imageUrl}) {
 }
 
 Banner.defaultProps = {
-  imageUrl: buildings
+  imageUrl: dots
 }
 export default Banner

@@ -8,6 +8,7 @@ import car from '../../assets/car.jpg'
 import { IoIosPerson } from "react-icons/io"
 import { FaCar } from "react-icons/fa6"
 import { GiMoneyStack } from "react-icons/gi"
+import TextBanner from '../banner/TextBanner';
 function Vehicle() {
   const neumorphism={
     borderRadius: "9px",
@@ -28,25 +29,29 @@ function Vehicle() {
     backgroundClip: "text",
     
   };
+  const head="Navigate with Ease: Explore Our Transportation Services!"
+  const subHead="Embark on a hassle-free journey with our transportation services! Whether you're commuting to work, exploring the city, or heading out on a weekend getaway, we've got you covered."
   return (
     <div>
-      <div className='h-screen  flex items-center justify-center' style={background}>
+      {/* <div className='h-screen  flex items-center justify-center' style={background}>
         <div className='text-9xl uppercase font-bold text-transparent  ' style={textEffect}>Enjoy your ride</div>
-      </div>
+      </div> */}
+      <TextBanner head={head} subHead={subHead}/>
       <div className='flex justify-end m-10'>
         <button className="btn " onClick={()=>document.getElementById('my_modal_3').showModal()}>List your vehicle</button>
         <VehicleModal/>
       </div>
+      <div className='lg:px-24 md:px-12 px-2 py-8 text-xl'>Selcet any among variety of options to travel</div>
       <div className="vehicle-cont lg:px-24 md:px-12 px-2 my-20">
         <div className="vehicle-card flex p-3  gap-4 flex-wrap max-w-[50rem]" style={neumorphism}>
           <div className="image-cont">
             <img src={auto} alt="auto" className='h-full sm:h-44 rounded-md '/>
           </div>
           <div className="details-cont">
-            <h2 className='text-3xl'>Bussines Name</h2>
+            <h2 className='text-3xl'>Lighting Travels</h2>
             <div className="owner-name flex items-center gap-2">
               <IoIosPerson/>
-              <h5 className=''>Lord babu</h5>
+              <h5 className=''>Ramesh lal</h5>
             </div>
 
             <div className='type flex items-center gap-2'>
@@ -56,7 +61,7 @@ function Vehicle() {
             <div>
               <div className='flex items-center gap-2'>
                 <GiMoneyStack/>
-                <h6>Price</h6>
+                <h6>1600</h6>
               </div>
               <p className='text-xs'>Negotiate with the owner for the price</p>
             </div>
