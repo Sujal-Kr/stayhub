@@ -3,14 +3,9 @@ import { GoHeart,GoHeartFill } from "react-icons/go";
 import { MdLocationPin,MdOutlineHomeWork,MdOutlineStarPurple500 } from "react-icons/md";
 import { AiOutlineNumber } from "react-icons/ai";
 import { Link } from 'react-router-dom';
-import { setCurrentItem } from '../../redux/slice/propertySlice';
-import { useDispatch } from 'react-redux';
+
 function Card({item,imageUrl}) {
-  const dispatch = useDispatch()
-  const handleSingleProperty=(index)=>{
-    console.log("i was clicked", index);
-    dispatch(setCurrentItem(index-1))
-  }
+  
   return (
     <div key={item._id} className=' prop-card grid grid-cols-1 lg:grid-cols-2 my-8 '>
                   <div className="iamge-cont ">

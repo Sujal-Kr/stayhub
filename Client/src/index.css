@@ -35,3 +35,28 @@
 .special{
     font-family: 'Teko', sans-serif !important;
 }
+.line-effect{
+    position: relative ;
+    padding: 0 1rem;
+    text-shadow: gray 2px 2px;
+}
+.line-effect:before {
+    content: "";
+    display: block;
+    width: 10rem;
+    height: 5px;
+    background: #00000072;
+    left: 100%;
+    top: 50%;
+    position: absolute;
+  }
+  .line-effect:after {
+    content: "";
+    display: block;
+    width: 10rem;
+    height: 5px;
+    background: #00000072;
+    right: 100%;
+    top: 50%;
+    position: absolute;
+  }

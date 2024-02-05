@@ -79,104 +79,64 @@ function Sellproperty() {
     }
     
   return (
-    <div className='min-h-screen my-40 flex   justify-center items-center'  >
-
-      <div className='bg-white shadow-md rounded px-8 pt-6 pb-8' >
-        <div className="content-head my-4">
-
-            <div className="text-3xl ">StayHub</div>
-            <div className='flex items-center'>
-                <div className="text-blue-400">Welcome Seller</div>
-            </div>
-            <div>Provide your details list your property</div>
-        </div>
-        <div >
-            <div className='sm:w-[38rem] flex flex-col gap-4'>
-                <div className="first grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="name-cont flex flex-col">
-                        <label htmlFor="pname">Property Name</label>
-                        <input type="text" value={name} onChange={(e)=>setName(e.target.value)} className='appearance-none w-full bg-slate-100 text-grey-darker  outline-blue-800 rounded py-2 px-4'/>
+    <div className=''>
+        <div className='shadow-xl  p-10 md:px-20 my-20 md:mx-40 rounded '>
+            <div className="head text-xl">Basic Information</div>
+            <form action="">
+                <div className=" grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                    <div className='flex flex-col'>
+                        <label className='text-[#3f37c9]' htmlFor="">Property Name</label>
+                        <input type="text" className='border-b-2 bg-transparent border-slate-600 outline-none px-4 py-2' />
                     </div>
-                    <div className='type-cont flex flex-col'>
-                        <label htmlFor="">Property Type</label>
-                        <select name="" id="" className='px-4 py-2 outline-blue-800 bg-slate-100 rounded' value={type} onChange={(e)=>setType(e.target.value)}>
-                            <option value="flat">Flat</option>
-                            <option value="apartement">Apartment</option>
-                            <option value="house">House</option>
+                    <div className='flex flex-col'>
+                        <label className='text-[#3f37c9]' htmlFor="">Owner Name</label>
+                        <input type="text" className='border-b-2 bg-transparent border-slate-600 outline-none px-4 py-2' />
+                    </div>
+                </div>
+                <div className=" grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                    <div className='flex flex-col'>
+                        <label className='text-[#3f37c9]' htmlFor="">Location </label>
+                        <input type="text" className='border-b-2 bg-transparent border-slate-600 outline-none px-4 py-2' />
+                    </div>
+                    <div className='flex flex-col'>
+                        <label className='text-[#3f37c9]' htmlFor="">Phone Name</label>
+                        <input type="number" inputMode='numeric' className='border-b-2 bg-transparent border-slate-600 outline-none px-4 py-2' />
+                    </div>
+                </div>
+                <div className=" grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                    <div className='flex flex-col'>
+                        <label className='text-[#3f37c9]' htmlFor="">Ammenties</label>
+                        <input type="text" className='border-b-2 bg-transparent border-slate-600 outline-none px-4 py-2' />
+                    </div>
+                    <div className='flex flex-col'>
+                        <label className='text-[#3f37c9]' htmlFor="">Nearby Places</label>
+                        <input type="text" className='border-b-2 bg-transparent border-slate-600 outline-none px-4 py-2' />
+                    </div>
+                </div>
+                <div className=" grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                    <div className='flex flex-col'>
+                        <label className='text-[#3f37c9]' htmlFor="">BHK Details</label>
+                        <select type="text" className='border-b-2 bg-transparent border-slate-600 outline-none px-4 py-2'>
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                            <option value="">4+ </option>
                         </select>
                     </div>
-                </div>
-                <div className="second grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="flex flex-col room-cont">
-                        <label htmlFor="proom">Rooms</label>
-                        <input type="text" value={rooms} onChange={(e)=>setRooms(e.target.value)} name="" id="" inputMode='numberic' className=' rounded px-4 py-2 bg-slate-100 outline-blue-800' />
-                    </div>
-                    <div className='furn-cont flex flex-col '>
-                        <label htmlFor="furn">Furnished</label>
-                        <select name="" id=""  value={furnished} onChange={(e)=>setFurnished(e.target.value)} className=' px-4 py-2 outline-blue-800 bg-slate-100 rounded uppercase'>
-                            <option value="fully">Fully</option>
-                            <option value="semi">Semi</option>
-                            <option value="none">None</option>
-                        </select>
+                    <div className='flex flex-col'>
+                        <label className='text-[#3f37c9]' htmlFor="">Price</label>
+                        <input type="number" inputMode='numeric' className='border-b-2 bg-transparent border-slate-600 outline-none px-4 py-2' />
                     </div>
                 </div>
-                <dv className="third flex flex-col">
-                    <label htmlFor="">Location</label>
-                    <input type="text" value={location} onChange={(e)=>setLocation(e.target.value)} placeholder='eg: Ashta' className='px-4 py-2  outline-blue-800 bg-slate-100 rounded'/>
-                </dv>
-                <div className="fourth ">
-                    <div className="amenty-cont flex flex-col">
-                        <label htmlFor="">Amenties</label>
-                        <input type="text"  value={sev} onChange={(e)=>setSevdata(e.target.value)} onKeyUp={(e)=>handleService(e)} placeholder='eg: Wifi' className=' rounded px-4 py-2  bg-slate-100 outline-blue-800' />
-                        <div className="flex gap-2 my-3">
-                            {
-                                services.map(item=>(
-                                    <div className='bg-slate-100 p-1 text-[0.7rem] flex items-center gap-2'>
-                                        <span>{item.data}</span>
-                                        <IoMdClose onClick={()=>deleteService(item.id)}/>
-                                    </div>
-                                ))
-                            }
-                        </div>
-                    </div>
+                <div className="flex flex-col gap-2">
+                    <label className='text-[#3f37c9]' htmlFor="">Upload Image</label>
+                    <input type="file" name="" id="" />
                 </div>
-                <div className="fifth grid grid-cols-1 sm:grid-cols-2">
-                    <div className='price-cont flex flex-col'>
-                        <label htmlFor="price-cont">Price</label>
-                        <input type="text"value={price} onChange={(e)=>setPrice(e.target.value)} name="name" inputMode='numeric' className='px-4 py-2  outline-blue-800 bg-slate-100 rounded'/>
-                    </div>
-                    
+                <div className='flex justify-end my-2'>
+                    <button className='px-2 py-2 bg-[#3f37c9] text-white rounded shadow-xl'>Save and Upload</button>
                 </div>
-                <div className="sixth">
-                    <label htmlFor="">Nearby Places</label>
-                    <input type="text" value={pal} onChange={(e)=>setPal(e.target.value)} onKeyUp={(e)=>handlePlaces(e)} placeholder='eg: Club' className='w-full rounded px-4 py-2  bg-slate-100 outline-blue-800' />
-                    <div className="flex gap-2 my-3">
-                        {
-                            places.map(item=>(
-                                <div className='bg-blue7-100 p-1 text-[0.7rem] flex items-center gap-2'>
-                                    <span>{item.data}</span>
-                                    <IoMdClose onClick={()=>deletePlaces(item.id)}/>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </div>
-                <div className="seventh">
-                    <div className="avail-cont flex gap-2">
-                        <label htmlFor="avail">Available</label>
-                        <input type="checkbox" checked={available} onChange={(e)=>setAvailable(e.target.checked)}/>
-                    </div>
-                </div>
-                <div className="eight ">
-                    <label htmlFor="fileinput">Property Images</label>
-                    <input type="file" accept='image/*' value={image} onChange={(e)=>setImage[e.target.files[0]]} />
-                </div>
-                <div className="post-btn">
-                    <button  onClick={(e)=>handleFormButton(e)}className='px-4 py-3 bg-blue-800 text-white uppercase w-full'>List Yout Property</button>
-                </div>
-            </div>
+            </form>
         </div>
-      </div>
     </div>
   )
 }

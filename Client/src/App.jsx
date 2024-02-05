@@ -5,8 +5,6 @@ import Navbar from './components/navbar/Navbar'
 import Property from './components/property/Property'
 import Login from './components/login/Login'
 import Signup from './components/signup/Signup'
-import store from './redux/store'
-import {Provider} from 'react-redux'
 import SingleProperty from './components/singleProperty/SingleProperty'
 import Hero from './components/hero/Hero'
 import Footer from './components/footer/Footer'
@@ -15,32 +13,54 @@ import Sellproperty from './components/listing/Sellproperty'
 import ProtectedRoute from './components/ProtectedRoute'
 import Mess from './components/mess/Mess'
 import Vehicle from './components/transport/Vehicle'
+import { AuthProvider } from './context/authContext'
 function App() {
   
 
   return (
-    <Provider store={store}>
+    <>
       <Router>
-        <Navbar/>
-        <Routes>
-          <Route path='/'element={<>
-            <Hero/>
-            <Feature/>
-            <Footer/>
-            </>}>
-          </Route>
-          <Route path='/property' element={<Property/>}></Route>
-          <Route path='/login'element={<Login/>}></Route>
-          <Route path='/signup' element={<Signup/>}></Route>
-          <Route path='/property/:id'element={<SingleProperty/>}></Route>
-          <Route element={<ProtectedRoute/>} >
-            <Route path='/proplisting' element={<Sellproperty/>}></Route>
-          </Route>
-          <Route path='/mess' element={<Mess/>}></Route>
-          <Route path='/vehicle' element={<Vehicle/>}></Route>
-        </Routes>
+        <AuthProvider>
+          <Navbar/>
+          <Routes>
+            <Route path='/'element={<>
+              <Hero/>
+              <Feature/>
+              <Footer/>
+              </>}>
+            </Route>
+            <Route path='/property' element={<>
+              <Property/>
+              <Footer/>
+              </>}>
+
+            </Route>
+            <Route path='/login'element={<Login/>}></Route>
+            <Route path='/signup' element={<Signup/>}></Route>
+            <Route path='/property/:id'element={<>
+              <SingleProperty/>
+              <Footer/>
+              </>}>
+            </Route>
+            <Route element={<ProtectedRoute/>} >
+              <Route path='/proplisting' element={<Sellproperty/>}></Route>
+            </Route>
+            <Route path='/mess' element={
+              <>
+              <Mess/>
+              <Footer/>
+              </>
+            }></Route>
+            <Route path='/vehicle' element={<>
+              <Vehicle/>
+              <Footer/>
+            </>
+            }></Route>
+            <Route path='/profile/:id'></Route>
+          </Routes>
+        </AuthProvider>
       </Router>
-    </Provider>
+    </>
   )
 }
 

@@ -1,17 +1,11 @@
 import React,{useState} from 'react'
 import { MdCurrencyRupee } from "react-icons/md";
-import propertySlice, { applyFilters } from '../../redux/slice/propertySlice';
-import { useDispatch } from 'react-redux';
 import axios from 'axios'
-
 
 function FilterCard({setProperty}) {
     const [range,setRange]=useState(4000)
     const [val,setVal]=useState([])
-    const dispatch = useDispatch()
-    const handleAppartmentType=(index)=>{
-        setVal(val[index]=true)
-    }
+    
     const getData=async()=>{
       const res= await axios.get('http://localhost:5000/api/property');
       return res.data.PropertyData

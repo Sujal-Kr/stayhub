@@ -1,11 +1,9 @@
 import React, {useState, useEffect} from "react";
 import {TiArrowSortedUp, TiArrowSortedDown} from "react-icons/ti";
-import {useDispatch, useSelector} from "react-redux";
 import { TbBuildingEstate } from "react-icons/tb";
 import demo from "../../assets/prop-bg.jpg";
 import Banner from "../banner/Banner";
 import bgCover from '../../assets/build.jpg'
-import {sortByPriceAsc, sortByPriceDsc} from "../../redux/slice/propertySlice";
 import "./Property.css";
 import axios from "axios";
 
@@ -33,12 +31,9 @@ const Property = () => {
 		}
 	};
 
-
-	const data = useSelector((state) => state.property);
 	useEffect(() => {
 		getData();
 	}, []);	
-	const dispatch = useDispatch();
 	const sortByPrice = () => {
 		const temp = property.toSorted((a, b) => a.price - b.price);
 		setProperty(temp);

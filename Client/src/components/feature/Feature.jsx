@@ -11,7 +11,7 @@ export const Feature = () => {
         <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
           <div>
             <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-              Features 
+              Services 
             </p>
           </div>
           <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900  sm:text-4xl md:mx-auto">
@@ -57,7 +57,7 @@ export const Feature = () => {
             Browse through a diverse range of PG accommodations, each with detailed information on amenities, pricing, and location. Find the perfect home away from home with ease.
             </p>
             <Link
-              href="/"
+              href="/property"
               aria-label=""
               className=" main-head transition-all   inline-flex items-center font-semibold  duration-200 "
             >
@@ -73,7 +73,7 @@ export const Feature = () => {
             Enjoy convenient dining with our Mess/Tiffin services. Explore various meal options, ensuring delicious and hassle-free dining for students, making life  more comfortable.
             </p>
             <a
-              href="/"
+              href="/mess"
               aria-label=""
               className=" text-[#3f37c9]   inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
             >
@@ -89,7 +89,7 @@ export const Feature = () => {
             Experience hassle-free daily commutes with our efficient transport services. We provide convenient transportation options for students, ensuring easy travel from their rooms to college and back.
             </p>
             <a
-              href="/"
+              href="/vehicle"
               aria-label=""
               className=" text-[#3f37c9]   inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
             >
@@ -107,7 +107,7 @@ export const Feature = () => {
             Explore exciting nearby places where students and their friends can unwind after a hectic college week. Whether it's a cozy cafe, a recreational spot, or a vibrant hangout, discover the best spots to relax and rejuvenate.
             </p>
             <a
-              href="/"
+              href="/property"
               aria-label=""
               className=" text-[#3f37c9]   inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
             >

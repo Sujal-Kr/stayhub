@@ -2,7 +2,7 @@ import React from 'react'
 import { MdOutlineRealEstateAgent } from "react-icons/md";
 function TextBanner({head,subHead,icon}) {
     const background={
-        background:"linear-gradient(to bottom,#90e0ef, #fff)"
+        background:"linear-gradient(to bottom,#a2d2ff, #fff)"
     }
   return (
     <div className=''style={background}>
