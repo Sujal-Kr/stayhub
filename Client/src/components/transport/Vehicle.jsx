@@ -62,7 +62,8 @@ function Vehicle() {
         </button>
         <VehicleModal />
       </div>
-      <div className="lg:px-24 md:px-12 px-2 py-8 text-xl">Select any among variety of options to travel</div>
+      <div className=' lg:px-24 md:px-12 px-2 text-3xl text-blue-700'>Your Ride</div>
+      <div className="lg:px-24 md:px-12 px-2 py-8 text-xl max-w-xl">Experience seamless rides with unparalleled safety and convenience on our cab booking website.</div>
       <div className="vehicle-cont lg:px-24 md:px-12 px-2 my-20">
         <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 '>
           {

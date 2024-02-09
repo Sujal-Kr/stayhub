@@ -14,6 +14,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Mess from './components/mess/Mess'
 import Vehicle from './components/transport/Vehicle'
 import { AuthProvider } from './context/authContext'
+import { UserProvider } from './context/userContext'
 function App() {
   
 
@@ -21,6 +22,7 @@ function App() {
     <>
       <Router>
         <AuthProvider>
+          <UserProvider>
           <Navbar/>
           <Routes>
             <Route path='/'element={<>
@@ -58,6 +60,7 @@ function App() {
             }></Route>
             <Route path='/profile/:id'></Route>
           </Routes>
+          </UserProvider>
         </AuthProvider>
       </Router>
     </>

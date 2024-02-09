@@ -33,7 +33,7 @@ function Mess() {
             <button className='btn my-3 capitalize shadow-xl bg-black text-white hover:text-black hover:bg-white ' onClick={() => document.getElementById('my_modal_4').showModal()}>List your Business</button>
         </div>
         <div className='text-3xl'><span className=''>Best Results</span></div>
-        <div className='max-w-80 mb-10'>, quam accusantium veritatis quas.</div>
+        <div className='max-w-80 mb-10'>People who love to eat are always the best people.</div>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4  ">
             {
                 mess&&mess.map((item)=>(

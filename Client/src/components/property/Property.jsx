@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, {useState, useEffect} from "react";
 import {TiArrowSortedUp, TiArrowSortedDown} from "react-icons/ti";
 import { TbBuildingEstate } from "react-icons/tb";
@@ -5,8 +6,8 @@ import demo from "../../assets/prop-bg.jpg";
 import Banner from "../banner/Banner";
 import bgCover from '../../assets/build.jpg'
 import "./Property.css";
-import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
+import { database } from "../../firebase";
 import Card from "../propCard/Card";
 import FilterCard from "../filterCard/FilterCard";
 import Loading from "../loading/Loading";
@@ -16,13 +17,16 @@ const Property = () => {
 	const [loading,setLoading] = useState(true)
 	const head="Find Your Perfect Space: Discover Our PG/Flat for Rent Services!"
 	const subHead="Make yourself at home with our PG/flat for rent services! Whether you're a student, a young professional, or someone new to the city, we offer comfortable and affordable accommodation options to suit your needs "
-	let PropData=[]
+	
+	const navigate=useNavigate()
 	const getData = async () => {
 		try {
-			const res = await axios.get('http://localhost:5000/api/property');
-			PropData = res.data.PropertyData;
-			console.log(PropData);
-			setProperty(PropData);
+			let temp = [];
+			const snapshot = await database.property.get();
+			snapshot.forEach((doc) => {
+			temp.push({ ...doc.data() });
+			});
+			setProperty(temp);
 			setLoading(false);
 		} catch (error) {
 			console.error("Error fetching data:", error);
@@ -43,7 +47,7 @@ const Property = () => {
 		const temp = property.toSorted((a, b) => b.price - a.price);
 		setProperty(temp);
 	};
-
+	
 	return (
 		<>
 		{
@@ -72,8 +76,8 @@ const Property = () => {
 						</div>
 						<div className="">
 							{property&&property.map((item) => (
-								<div key={item._id}>
-									<Card item={item} imageUrl={demo} />
+								<div key={item.Pid}>
+									<Card item={item} />
 								</div>
 							))}
 						</div>

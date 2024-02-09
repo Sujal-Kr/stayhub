@@ -7,6 +7,7 @@ import { PiUserCirclePlus } from "react-icons/pi";
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { AuthContext } from '../../context/authContext';
+import { UserContext } from '../../context/userContext';
 
 function Navbar() {
     const [mode, setMode] = useState(false);
@@ -14,7 +15,8 @@ function Navbar() {
     console.log(user);
     const [toggle, setToggle] = useState(false);
     const navigate = useNavigate();
-
+    const {userData}=useContext(UserContext)
+   
     const handleUser = async () => {
         if (user) await logout();
         else navigate('/login');
@@ -42,8 +44,8 @@ function Navbar() {
             <div className="action-btn flex items-center gap-4">
                 <div className='relative'>
                     <div className='flex items-center gap-2 'onClick={() => setToggle(!toggle)}>
-                        <div className='h-10 flex items-center justify-center w-10 rounded-full bg-slate-100'>{"S"}</div>
-                        <p>{"Sujal"}</p>
+                        <div className='h-10 flex items-center justify-center w-10 rounded-full bg-slate-100'>{userData?userData.userName.substring(0,1):"S"}</div>
+                        <p>{userData?userData.userName:""}</p>
                     </div>
                     {toggle &&
                         <div className='bg-white shadow-md flex flex-col absolute right-0 py-2 px-1 rounded'>
