@@ -7,23 +7,24 @@ import axios from 'axios'
 import bgcover from '../../assets/stud.svg'
 import { IoMdSend } from "react-icons/io"
 import { AuthContext } from '../../context/authContext';
+import {UserContext} from '../../context/userContext'
 import { database,storage } from '../../firebase';
 import { v4 as uuidv4 } from 'uuid'
 import { useNavigate } from 'react-router-dom'
+import {Toaster,toast} from 'sonner'
 function Sellproperty() {
     const [Pname,setPname] =useState()
     const [type,setType] = useState()
     const [phone,setPhone] = useState()
     const [loc,setLoc] = useState()
-    const [bhk,setBhk] = useState()
+    const [bhk,setBhk] = useState("1")
     const [price,setPrice] = useState()
     const [file,setFile] = useState()
     const [amn,setAmn]= useState([])
     const [near,setNear]=useState()
     const [loading,setLoading]=useState(true)
     const {user} = useContext(AuthContext) 
-
-
+    const {userData}=useContext(UserContext)
     const navigate=useNavigate()
     const background ={
         backgroundImage:`url(${bgcover})`,
@@ -38,8 +39,19 @@ function Sellproperty() {
 		borderRadius: "10px",
 		border: "1px solid rgba( 255, 255, 255, 0.18 )",
 	};
+    const notify=()=>{
+        toast.success("Property Listed Successfully!!!")
+    }
+    const check = ()=>toast.error("You dont have permission to perform this action")
     const handleForm=(e)=>{
         e.preventDefault()
+        if(userData.bussinessAccount==false){
+            check()
+            return
+        }
+        if(file==null){
+            return
+        }
         const uid=user.uid
         const pid=uuidv4()
         let uploadTask=storage.ref(`/users/${pid}/property`).put(file)
@@ -75,16 +87,20 @@ function Sellproperty() {
                     ImageUrl:url,
                     reviews:temp,
                 })
+            }).then(()=>{
+                setLoading(false)
+                notify()
                 navigate('/property')
             })
-            setLoading(false)
+            
         }
     }
   return (
     <div className=''style={background}>
+        <Toaster/>
         <div className='shadow-xl  p-10 md:px-20 my-20 md:mx-40 rounded  ' style={morphism}>
             <div className="head text-xl">Basic Information</div>
-            <form action="">
+            <form action="" onSubmit={handleForm}>
                 <div className=" grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
                     <div className='flex flex-col'>
                         <label className='text-[#3f37c9]' htmlFor="">Property Name</label>
@@ -117,8 +133,8 @@ function Sellproperty() {
                 </div>
                 <div className=" grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
                     <div className='flex flex-col'>
-                        <label className='text-[#3f37c9]' htmlFor="" value={bhk} onChange={(e)=>setBhk(e.target.value)}>BHK Details</label>
-                        <select type="text" className='border-b-2 bg-transparent border-slate-600 outline-none px-4 py-2'>
+                        <label className='text-[#3f37c9]' htmlFor="" >BHK Details</label>
+                        <select type="text" className='border-b-2 bg-transparent border-slate-600 outline-none px-4 py-2' value={bhk} onChange={(e)=>setBhk(e.target.value)}>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -135,7 +151,7 @@ function Sellproperty() {
                     <input type="file" name="" id="" onChange={(e)=>setFile(e.target.files[0])}/>
                 </div>
                 <div className='flex justify-end my-2'>
-                    <button className='px-2 py-2 bg-[#3f37c9] text-white rounded shadow-xl' onClick={handleForm}>Save and Upload</button>
+                    <button className='px-2 py-2 bg-[#3f37c9] text-white rounded shadow-xl' type='submit'>Save and Upload</button>
                 </div>
             </form>
         </div>

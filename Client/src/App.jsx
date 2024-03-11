@@ -15,6 +15,7 @@ import Mess from './components/mess/Mess'
 import Vehicle from './components/transport/Vehicle'
 import { AuthProvider } from './context/authContext'
 import { UserProvider } from './context/userContext'
+import Profile from './components/profile/Profile'
 function App() {
   
 
@@ -31,12 +32,7 @@ function App() {
               <Footer/>
               </>}>
             </Route>
-            <Route path='/property' element={<>
-              <Property/>
-              <Footer/>
-              </>}>
-
-            </Route>
+            
             <Route path='/login'element={<Login/>}></Route>
             <Route path='/signup' element={<Signup/>}></Route>
             <Route path='/property/:id'element={<>
@@ -45,20 +41,26 @@ function App() {
               </>}>
             </Route>
             <Route element={<ProtectedRoute/>} >
+              <Route path='/property' element={<>
+                <Property/>
+                <Footer/>
+                </>}>
+              </Route>
               <Route path='/proplisting' element={<Sellproperty/>}></Route>
-            </Route>
-            <Route path='/mess' element={
-              <>
-              <Mess/>
-              <Footer/>
-              </>
-            }></Route>
-            <Route path='/vehicle' element={<>
-              <Vehicle/>
-              <Footer/>
-            </>
-            }></Route>
-            <Route path='/profile/:id'></Route>
+              <Route path='/vehicle' element={<>
+                  <Vehicle/>
+                  <Footer/>
+                </>
+              }></Route>
+              <Route path='/mess' element={
+                <>
+                <Mess/>
+                <Footer/>
+                </>
+              }></Route>
+              
+              <Route path='/profile/:id' element={<Profile/>}></Route>
+              </Route>
           </Routes>
           </UserProvider>
         </AuthProvider>

@@ -1,24 +1,48 @@
-import React,{useState,useContext} from 'react'
-import { AuthContext } from '../../context/authContext'
+import { Dialog, Transition } from '@headlessui/react'
+import { Fragment, useState ,useContext,useEffect} from 'react'
+import {Toaster,toast} from 'sonner'
 import { v4 as uuidv4 } from 'uuid'
-import { storage ,database} from '../../firebase'
+import { database,storage } from '../../firebase'
+import { AuthContext } from '../../context/authContext'
+import { UserContext } from '../../context/userContext'
 
 
-function MessModal() {
+export default function MessModal({setLoading}) {
+    const [isOpen, setIsOpen] = useState(false)
     const [bname,setBname]=useState()
     const [owner,setOwner]=useState()
     const [price,setPrice]=useState()
     const [phone,setPhone]=useState()
     const [file,setFile]=useState(null)
     const [error,setError]=useState('')
+    const {user}=useContext(AuthContext)
+    const {userData} =useContext(UserContext)
+    const accNotify=()=>toast.error("You dont have a bussiness account!!")
+    const [data,setData]=useState('')
     
-    const {user} =useContext(AuthContext)
-    const handleFormSubmit=async(e)=>{
+    function closeModal() {
+        setIsOpen(false)
+    }
+
+    function openModal() {
+        
+        console.log("I am from user Data",userData)
+        if(userData.bussinessAccount==false){
+          accNotify()
+          return
+        }
+        setIsOpen(true)
+    }
+    const notify=()=>{
+        toast.success("Uploaded successfully")
+    }
+  const handleFormSubmit=async(e)=>{
         e.preventDefault()
         const uid=user.uid
         const mid=uuidv4()
         let uploadTask=storage.ref(`/users/${mid}/Mess`).put(file)
         uploadTask.on('state_changed',fn1,fn2,fn3)
+        setLoading(true)
         function fn1(snapshot){
             let progress=(snapshot.bytesTransferred / snapshot.totalBytes)*100
             console.log(`progress is ${progress}`)
@@ -43,18 +67,60 @@ function MessModal() {
                     reviews:[],
                     
                 })
+                
+            }).then(()=>{
+                setLoading(false)
+                closeModal()
+                notify()
             })
-            
         }
     }
   return (
-    <div>
-      <div>
-        <dialog id="my_modal_4" className="modal">
-            <div className="modal-box">
-                <h3 className="font-bold text-lg">Hello!</h3>
-                <p className="">List your Bussiness with us</p>
-                <form className='my-8'>
+    <>
+        <Toaster/>
+      <div className="fixed bottom-12 right-12 flex items-center justify-center">
+        <button
+          type="button"
+          onClick={openModal}
+          className="rounded-md bg-black px-4 py-3 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
+        >
+          List your business
+        </button>
+      </div>
+
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black/25" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded bg-white p-6 text-left align-middle shadow-xl transition-all">
+                  <Dialog.Title
+                    as="h3"
+                    className="text-lg font-medium leading-6 text-gray-900"
+                  >
+                    List your business with us
+                  </Dialog.Title>
+                  <form action="" onSubmit={handleFormSubmit}>
                     <div className="first grid md:grid-cols-2  gap-2 my-3">
                        <div className="b-name-cont">
                             <label htmlFor="b-name" className='text-[#3f37c9]'>Business Name</label>
@@ -68,29 +134,34 @@ function MessModal() {
                     <div className="second grid md:grid-cols-2 gap-2 my-3">
                         <div className="price-cont flex flex-col">
                             <label className="text-[#3f37c9]" htmlFor='Price'>Price</label>
-                            <input type="text" className='md:w-full outline-[#3f37c9] border-2 border-slate-300 px-4 py-2 rounded-md' value={price} onChange={(e)=>setPrice(e.target.value)}/>
+                            <input type="number" className='md:w-full outline-[#3f37c9] border-2 border-slate-300 px-4 py-2 rounded-md' value={price} onChange={(e)=>setPrice(e.target.value)}/>
                         </div>
                         <div className="phone-cont">
                             <label htmlFor="phone" className='text-[#3f37c9]'>Contact No</label>
-                            <input type="text" inputMode='numeric' className='w-full outline-[#3f37c9] border-2 border-slate-300 px-4 py-2 rounded-md' value={phone} onChange={(e)=>setPhone(e.target.value)}/>
+                            <input type="number" inputMode='numeric' className='w-full outline-[#3f37c9] border-2 border-slate-300 px-4 py-2 rounded-md' value={phone} onChange={(e)=>setPhone(e.target.value)}/>
                         </div>
                     </div>
                     <div className='upload-cont flex flex-col my-3'>
-                        <label htmlFor="">Upload Some Images</label>
+                        <label htmlFor="">Upload Image</label>
                         <input type="file" name=""  onChange={(e)=>setFile(e.target.files[0])} />
                     </div>
-                    <div className='my-6'>
-                        <button className='w-full bg-[#3f37c9] text-white px-4 py-3 rounded-md' onClick={handleFormSubmit}>Upload</button>
+                    <div className="mt-4">
+                        <button
+                        type="submit"
+                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-8 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                        >
+                        Upload
+                        </button>
                     </div>
-                    
-                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                </form>
-                
+                  </form>
+
+                  
+                </Dialog.Panel>
+              </Transition.Child>
             </div>
-        </dialog>
-    </div>
-    </div>
+          </div>
+        </Dialog>
+      </Transition>
+    </>
   )
 }
-
-export default MessModal

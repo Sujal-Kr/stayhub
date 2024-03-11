@@ -60,3 +60,9 @@
     top: 50%;
     position: absolute;
   }
+
+
+  .me{
+    background-color: #3f37c9;
+    color: white;
+  }

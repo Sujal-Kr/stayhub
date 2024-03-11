@@ -1,9 +1,38 @@
-import React from 'react'
-
+import React, { useContext, useEffect,useState } from 'react'
+import { useParams } from 'react-router-dom'
+import avatar from '../../assets/avatar.jpg'
+import { database } from '../../firebase'
+import { UserContext } from '../../context/userContext'
 function Profile() {
+  const {id} =useParams()
+  const [user,setUser]=useState()
+  const fetchUser=async()=>{
+    const res=await database.users.doc(id).get()
+    const data=await res.data()
+    setUser(data)
+  }
+  
+  useEffect(()=>{
+    fetchUser()
+  },[id])
+  
   return (
-    <div className='my-40'>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita reiciendis ullam veritatis magnam, accusantium cum eos facere neque velit, commodi adipisci non nam, pariatur modi officia impedit debitis? Dolore in perspiciatis tempora harum? Eum odit eos animi, numquam porro dolorum non recusandae commodi architecto rem sint. Deleniti officiis libero accusamus perspiciatis iste? Quis, ad? Ipsam dolor exercitationem tempore tempora omnis inventore. Cum voluptatibus dolore ipsa quaerat quas? Provident dolorem unde animi distinctio aliquid dignissimos dolor obcaecati! Ullam sit ea animi maxime, eligendi accusamus labore recusandae fugit eaque quis? Accusamus perspiciatis minus quia voluptate eos fugit aliquid quaerat adipisci nemo repudiandae?
+    <div >
+
+      <div className='min-h-screen flex justify-center items-center bg-slate-100'>
+        <div className="profile-card mx-4 sm:mx-10 md:mx-20 lg:mx-80 h-[30rem] rounded w-full bg-white ">
+          <div className='flex flex-col items-center justify-center gap-2 h-full'>
+            <div><img src={avatar} alt="" className='h-40 w-40' /></div>
+            <div className='text-4xl'>Hello Everyone!</div>
+            <div className='uppercase text-lg'>{user&&user.userName}</div>
+            <div className='text-slate-400'>{user&&user.email}</div>
+            <div className='flex gap-4'>
+              <button className='px-6 hover:shadow-2xl py-2 bg-blue-700 rounded-sm text-white'>Message</button>
+              <button className='px-6 hover:shadow-2xl py-2 bg-blue-700 rounded-sm text-white'>Contact</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

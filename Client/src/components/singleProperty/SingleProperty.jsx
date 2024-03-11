@@ -6,10 +6,12 @@ import {MdOutlineCurrencyRupee,MdLocationPin} from 'react-icons/md'
 import PropComment from '../comment/PropComment'
 import {BsBuildings} from 'react-icons/bs'
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 function SingleProperty() {
   const {id} = useParams()
   const [data,setData]=useState()
   const [lodaing,setLoading]=useState(true)
+  const navigate=useNavigate()
   const fetchData=async()=>{
     setLoading(true)
     try{
@@ -61,8 +63,9 @@ function SingleProperty() {
         </div>
       </div>
       <div className="flex justify-center my-8">
-        <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"><Link to={`https://wa.me/${data.phone}`} target='_blank'>Contact Owner</Link></button>
-      </div>
+        
+          <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" onClick={()=>navigate(`/profile/${data.OwnerId}`)}>Contact Owner</button>
+        </div>
     </div>
   </div>
       <PropComment item={data} />

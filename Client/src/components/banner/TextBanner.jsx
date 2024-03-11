@@ -1,5 +1,6 @@
 import React from 'react'
 import { MdOutlineRealEstateAgent } from "react-icons/md";
+import { Link } from 'react-router-dom';
 function TextBanner({head,subHead,icon}) {
     const background={
         background:"linear-gradient(to bottom,#a2d2ff, #fff)"
@@ -48,12 +49,12 @@ function TextBanner({head,subHead,icon}) {
             </p>
           </div>
           <div>
-            <a
-              href="#"
+            <Link
+              to="/"
               className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-[#00f5d4] hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
             >
-              Explore
-            </a>
+              Home
+            </Link>
           </div>
         </div>
       </div>

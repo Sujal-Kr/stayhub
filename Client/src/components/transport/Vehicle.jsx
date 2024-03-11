@@ -15,10 +15,11 @@ import VehicleCard from '../card/VehicleCard';
 
 function Vehicle() {
   const [vehicle, setVehicle] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [loading]);
 
   const fetchData = async () => {
     let temp = [];
@@ -57,10 +58,10 @@ function Vehicle() {
     <div>
       <TextBanner head={head} subHead={subHead} />
       <div className="flex justify-end m-10">
-        <button className="btn" onClick={() => document.getElementById('my_modal_3').showModal()}>
+        {/* <button className="btn" onClick={() => document.getElementById('my_modal_3').showModal()}>
           List your vehicle
-        </button>
-        <VehicleModal />
+        </button> */}
+        <VehicleModal  setLoading={setLoading}/>
       </div>
       <div className=' lg:px-24 md:px-12 px-2 text-3xl text-blue-700'>Your Ride</div>
       <div className="lg:px-24 md:px-12 px-2 py-8 text-xl max-w-xl">Experience seamless rides with unparalleled safety and convenience on our cab booking website.</div>

@@ -51,13 +51,7 @@ function Login() {
             },3000)
         }
     }
-    const loginFunction = async(e) =>{
-        e.preventDefault();
-        // yaha p userId v milega tumko ab usko store kro kahe p aur usse property listing m link krnge
-        // after loggin user info ko display kro dashboard ya "/"" m
-        const res =  await axios.post('http://localhost:5000/auth',userData);
-        if( res.status === 201)navigate("/");
-    }
+   
 
   return (
     <div  className='h-screen flex justify-center items-center ' style={backgroundStyle}>

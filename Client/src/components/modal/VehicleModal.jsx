@@ -1,18 +1,23 @@
-import React,{useState,useContext} from 'react'
+import { Dialog, Transition } from '@headlessui/react'
+import { Fragment, useContext, useState } from 'react'
+import {Toaster,toast} from 'sonner'
 import { database } from '../../firebase'
 import { AuthContext } from '../../context/authContext'
 import { v4 as uuidv4 } from 'uuid'
 import { storage } from '../../firebase';
+import { UserContext } from '../../context/userContext'
 
-function VehicleModal() {
+export default function VehicleModal({setLoading}) {
+    const [isOpen, setIsOpen] = useState(false)
     const [bname,setBname]=useState()
     const [owner,setOwner]=useState()
     const [price,setPrice]=useState()
     const [phone,setPhone]=useState()
-    const [loading,setLoading]=useState(true)
     const [file,setFile]=useState(null)
-    
-    const {user} =useContext(AuthContext)
+    const {user}= useContext(AuthContext)
+    const {userData}=useContext(UserContext)
+    const notify=()=>toast.success("Uploaded Successfully")
+    const accNotify=()=>toast.error("You dont have a bussiness account!!!")
     const handleFormSubmit=async(e)=>{
         e.preventDefault()
         const uid=user.uid
@@ -42,52 +47,112 @@ function VehicleModal() {
                         ImageUrl:url,
                         reviews:[],
                     })
+                }).then(()=>{
+                    notify()
+                    closeModal()
+                    setLoading(false)
                 })
-                setLoading(false)
+                
 
             }
     }
+  function closeModal() {
+    setIsOpen(false)
+    
+  }
+
+  function openModal() {
+    if(userData.bussinessAccount==false){
+      accNotify()
+      return
+    }
+    setIsOpen(true)
+  }
+
   return (
-    <div>
-        <dialog id="my_modal_3" className="modal">
-            <div className="modal-box">
-                <h3 className="font-bold text-lg">Hello!</h3>
-                <p className="">List your Bussiness with us</p>
-                <form className='my-8'>
-                    <div className="first grid md:grid-cols-2  gap-2 my-3">
-                       <div className="b-name-cont">
-                            <label htmlFor="b-name" className='text-[#3f37c9]'>Business Name</label>
-                            <input type="text" name='b-name' className='w-full outline-[#3f37c9] border-2 border-slate-300 px-4 py-2 rounded-md' value={bname} onChange={(e)=>setBname(e.target.value)} />
-                       </div>
-                       <div className="name-cont">
-                            <label htmlFor="name" className='text-[#3f37c9]'>Owner Name</label>
-                            <input type="text"  className='w-full outline-[#3f37c9] border-2 border-slate-300 px-4 py-2 rounded-md' value={owner} onChange={(e)=>setOwner(e.target.value)}/>
-                       </div>
-                    </div>
-                    <div className="second grid md:grid-cols-2 gap-2 my-3">
-                        <div className="price-cont flex flex-col">
-                            <label className="text-[#3f37c9]" htmlFor='Price'>Price</label>
-                            <input type="text" className='md:w-full outline-[#3f37c9] border-2 border-slate-300 px-4 py-2 rounded-md' value={price} onChange={(e)=>setPrice(e.target.value)}/>
+    <>
+        <Toaster richColors/>
+      <div className="fixed bottom-10 right-10 flex items-center justify-center">
+        <button
+          type="button"
+          onClick={openModal}
+          className="rounded-md bg-black px-4 py-4 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
+        >
+          List your business
+        </button>
+      </div>
+
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black/25" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded bg-white p-6 text-left align-middle  transition-all">
+                    <Dialog.Title className='text-xl my-3'>
+                        List your business with us
+                    </Dialog.Title>
+                    <form onSubmit={handleFormSubmit}>
+                        <div className="first grid grid-cols-1 gap-2 md:grid-cols-2 my-3">
+                            <div className='flex flex-col'>
+                                <label htmlFor="">Bussiness Name</label>
+                                <input className='outline-none border-2 border-slate-200 rounded px-2 py-1' required type="text" value={bname} onChange={(e)=>setBname(e.target.value)} />
+                            </div>
+                            <div>
+                                <label htmlFor="">Owner Name</label>
+                                <input className='outline-none border-2 border-slate-200 rounded px-2 py-1'  type="text" value={owner} onChange={(e)=>setOwner(e.target.value)} />
+                            </div>
                         </div>
-                        <div className="phone-cont">
-                            <label htmlFor="phone" className='text-[#3f37c9]'>Contact No</label>
-                            <input type="text" inputMode='numeric' className='w-full outline-[#3f37c9] border-2 border-slate-300 px-4 py-2 rounded-md' value={phone} onChange={(e)=>setPhone(e.target.value)}/>
+                        <div className="second grid grid-cols-1 gap-2 md:grid-cols-2 my-3">
+                            <div className='flex flex-col'>
+                                <label htmlFor="">Price</label>
+                                <input className='outline-none border-2 border-slate-200 rounded px-2 py-1' required type="number" value={price} onChange={(e)=>setPrice(e.target.value)} />
+                            </div>
+                            <div>
+                                <label htmlFor="">Phone Number</label>
+                                <input className='outline-none border-2 border-slate-200 rounded px-2 py-1'  type="number" value={phone} onChange={(e)=>setPhone(e.target.value)} />
+                            </div>
                         </div>
-                    </div>
-                    <div className="flex flex-col">
-                        <label htmlFor="">Upload Image</label>
-                        <input type="file"  onChange={(e)=>setFile(e.target.files[0])} />
-                    </div>
-                    <div className='my-6'>
-                        <button className='w-full bg-[#3f37c9] text-white px-4 py-3 rounded-md' onClick={handleFormSubmit}>Upload</button>
-                    </div>
-                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                </form>
-                
+                        <div className='flex flex-col '>
+                            <label htmlFor="">Upload Image</label>
+                            <input type="file" required   onChange={(e)=>setFile(e.target.files[0])}/>
+                        </div>
+                        <div className="mt-4">
+                            <button
+                            type="submit" 
+                            className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-8 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                            >
+                            Upload
+                            </button>
+                        </div>
+                    </form>
+
+                 
+                </Dialog.Panel>
+              </Transition.Child>
             </div>
-        </dialog>
-    </div>
+          </div>
+        </Dialog>
+      </Transition>
+    </>
   )
 }
-
-export default VehicleModal
