@@ -57,7 +57,7 @@ function FilterCard({setProperty}) {
         </div>
 
         <div className="avail-cont ">
-            <div className="content-head font-bold  ">Availablity</div>
+            {/* <div className="content-head font-bold  ">Availablity</div>
             <div className='grid grid-cols-2 text-[0.8rem]'>
                 <div className='flex gap-2 items-center'>
                     <input type="radio" name="avail" id="" value="immediately"/>
@@ -67,7 +67,7 @@ function FilterCard({setProperty}) {
                   <input type="radio" name="avail" id="" value="later"/>
                   Later
                 </div>
-            </div>
+            </div> */}
         </div>
       </div>
       <div className="price-cont">

@@ -10,9 +10,11 @@ import { AuthContext } from '../../context/authContext';
 import {UserContext} from '../../context/userContext'
 import { database,storage } from '../../firebase';
 import { v4 as uuidv4 } from 'uuid'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import {Toaster,toast} from 'sonner'
-function Sellproperty() {
+function UpdateProperty() {
+  const {id} = useParams()
+    console.log(id)
     const [Pname,setPname] =useState()
     const [type,setType] = useState()
     const [phone,setPhone] = useState()
@@ -40,21 +42,23 @@ function Sellproperty() {
 		border: "1px solid rgba( 255, 255, 255, 0.18 )",
 	};
     const notify=()=>{
-        toast.success("Property Listed Successfully!!!")
+        toast.success("Property Updated Successfully!!!")
     }
     const check = ()=>toast.error("You dont have permission to perform this action")
     const handleForm=(e)=>{
         e.preventDefault()
-        if(userData.bussinessAccount==false){
-            check()
-            return
-        }
+        
+        
+        // if(userData.bussinessAccount==false){
+        //     check()
+        //     return
+        // }
+        const uid=user.uid
         if(file==null){
             return
         }
-        const uid=user.uid
-        const pid=uuidv4()
-        let uploadTask=storage.ref(`/users/${pid}/property`).put(file)
+        
+        let uploadTask=storage.ref(`/users/${id}/property`).put(file)
             uploadTask.on('state_changed',fn1,fn2,fn3)
             //                       progress,error,success
         function fn1(snapshot){
@@ -73,8 +77,8 @@ function Sellproperty() {
             uploadTask.snapshot.ref.getDownloadURL().then((url)=>{
                 console.log(url)
                 
-                database.property.doc(pid).set({
-                    Pid:pid,
+                database.property.doc(id).update({
+                    Pid:id,
                     propertyName: Pname,
                     OwnerId:uid,
                     numberOfBhk: bhk||"1",
@@ -88,13 +92,9 @@ function Sellproperty() {
                     reviews:temp,
                 })
             }).then(()=>{
-                database.users.doc(uid).update({
-                    listing: [...userData.listing, pid],
-                });
-            }).then(()=>{
                 setLoading(false)
                 notify()
-                navigate('/property')
+                navigate('/profile/listing')
             })
             
         }
@@ -163,4 +163,4 @@ function Sellproperty() {
   )
 }
 
-export default Sellproperty
+export default UpdateProperty

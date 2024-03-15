@@ -49,7 +49,8 @@ function Signup() {
 				email:email,
 				phone:phone,
 				gender:gender,
-				bussinessAccount:acc
+				bussinessAccount:acc,
+				listing:[]
 			})
 			navigate('/')
 			

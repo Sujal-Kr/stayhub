@@ -15,6 +15,7 @@ import Mess from './components/mess/Mess'
 import Vehicle from './components/transport/Vehicle'
 import { AuthProvider } from './context/authContext'
 import { UserProvider } from './context/userContext'
+import UpdateProperty from './components/MyListing/UpdateProperty'
 import Profile from './components/profile/Profile'
 function App() {
   
@@ -60,7 +61,9 @@ function App() {
               }></Route>
               
               <Route path='/profile/:id' element={<Profile/>}></Route>
+              <Route path='/update/:id' element={<UpdateProperty/>}></Route>
               </Route>
+
           </Routes>
           </UserProvider>
         </AuthProvider>
