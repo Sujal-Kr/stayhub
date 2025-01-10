@@ -37,7 +37,7 @@ function Listing() {
     }
     useEffect(() =>{
         getListing()
-    },[userData])
+    },[])
   return (
     <div className='mb-10'>
       {

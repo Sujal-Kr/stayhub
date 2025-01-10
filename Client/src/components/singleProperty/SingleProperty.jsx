@@ -53,7 +53,7 @@ function SingleProperty() {
           ))
         }
         </div>
-        <h4 className='text-xl'>Only for you</h4>
+        <h4 className='text-xl'>Amenities</h4>
         <div className='flex gap-1'>
         {
           data.amenities.map((item)=>(
